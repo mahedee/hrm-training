@@ -29,5 +29,7 @@ namespace HRM.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<HRM.Models.Division> Divisions { get; set; }
     }
 }
