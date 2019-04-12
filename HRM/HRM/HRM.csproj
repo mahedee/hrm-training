@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DeptsController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -210,8 +211,13 @@
     <Compile Include="Migrations\201904121121554_02.Designer.cs">
       <DependentUpon>201904121121554_02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904121206069_mig02.cs" />
+    <Compile Include="Migrations\201904121206069_mig02.Designer.cs">
+      <DependentUpon>201904121206069_mig02.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Dept.cs" />
     <Compile Include="Models\Division.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -287,6 +293,11 @@
     <Content Include="Views\Divisions\Details.cshtml" />
     <Content Include="Views\Divisions\Edit.cshtml" />
     <Content Include="Views\Divisions\Index.cshtml" />
+    <Content Include="Views\Depts\Create.cshtml" />
+    <Content Include="Views\Depts\Delete.cshtml" />
+    <Content Include="Views\Depts\Details.cshtml" />
+    <Content Include="Views\Depts\Edit.cshtml" />
+    <Content Include="Views\Depts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -303,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904121121554_02.resx">
       <DependentUpon>201904121121554_02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904121206069_mig02.resx">
+      <DependentUpon>201904121206069_mig02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
