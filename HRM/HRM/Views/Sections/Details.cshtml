@@ -1,0 +1,42 @@
+﻿@model HRM.Models.Section
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Section</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dept.DeptCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dept.DeptCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

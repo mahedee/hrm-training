@@ -21,5 +21,7 @@ namespace HRM.Models
         public int DivisionId { get; set; }
         [ForeignKey("DivisionId")]
         public virtual Division Division { get; set; }
+
+        public List<Section> Sections { get; set; }
     }
 }
