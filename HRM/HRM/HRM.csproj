@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201905010412462_mig05.Designer.cs">
       <DependentUpon>201905010412462_mig05.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905010529152_upload-image01.cs" />
+    <Compile Include="Migrations\201905010529152_upload-image01.Designer.cs">
+      <DependentUpon>201905010529152_upload-image01.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dept.cs" />
@@ -336,7 +340,9 @@
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -366,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905010412462_mig05.resx">
       <DependentUpon>201905010412462_mig05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905010529152_upload-image01.resx">
+      <DependentUpon>201905010529152_upload-image01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

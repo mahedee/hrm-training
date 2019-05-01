@@ -98,9 +98,35 @@
             @Html.DisplayFor(model => model.Address)
         </dd>
 
+        <dt>
+            Employee Photo
+        </dt>
+
+        <dd>
+            <div style="height:200px; width:200px; overflow:auto;">
+                <img id="imgEmpPhoto" src="@Model.EmployeePhotoPath.TrimStart('~')" alt="Employee Image">
+            </div>
+        </dd>
+
+
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        //Display any size into 200 px X 200 px
+        $(document).ready(function () {
+            $('#imgEmpPhoto').css({ 'height': '200px', 'width': '200px' });
+        });
+
+
+    </script>
+}

@@ -44,6 +44,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
+        <th>
+            Photo
+        </th>
         <th></th>
     </tr>
 
@@ -81,6 +84,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+        <td>
+            @*<img src="/Images/Arisha01191718347.jpg" id="photo" height="50" width="50" />*@
+            <img src="@item.EmployeePhotoPath.TrimStart('~')" id="photo" height="50" width="50" />
+
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HRM.Models;
+using System.IO;
 
 namespace HRM.Controllers
 {
@@ -49,10 +50,21 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,FullName,NickName,MobileNumber,Email,FatherName,MotherName,DesignationId,BloodGroup,DeptId,Address")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,EmployeeCode,FullName,NickName,MobileNumber,Email,FatherName,MotherName,DesignationId,BloodGroup,DeptId,Address,EmployeePhotoPath, EmployeePhoto")] Employee employee)
         {
             if (ModelState.IsValid)
             {
+                //For saving photo
+                if (employee.EmployeePhoto != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(employee.EmployeePhoto.FileName);
+                    string extension = Path.GetExtension(employee.EmployeePhoto.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    employee.EmployeePhotoPath = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    employee.EmployeePhoto.SaveAs(fileName);
+                }
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,11 +97,23 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,FullName,NickName,MobileNumber,Email,FatherName,MotherName,DesignationId,BloodGroup,DeptId,Address")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,FullName,NickName,MobileNumber,Email,FatherName,MotherName,DesignationId,BloodGroup,DeptId,Address,EmployeePhotoPath, EmployeePhoto")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
+
+                //For editing photo
+                if (employee.EmployeePhoto != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(employee.EmployeePhoto.FileName);
+                    string extension = Path.GetExtension(employee.EmployeePhoto.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    employee.EmployeePhotoPath = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    employee.EmployeePhoto.SaveAs(fileName);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -54,5 +54,10 @@ namespace HRM.Models
         [Display(Name = "Address")]
         public string Address { get; set; }
 
+        [Display(Name = "Upload File")]
+        public string EmployeePhotoPath { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase EmployeePhoto { get; set; }
     }
 }

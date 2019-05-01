@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Employees", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Employee</h4>
         <hr />
@@ -104,6 +104,25 @@
         </div>
 
         <div class="form-group">
+            @*@Html.LabelFor("Employee Photo", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Employee Photo</label>
+            <div class="col-md-10">
+                <div style="height:200px; width:200px; overflow:auto;">
+                    <img id="imgEmpPhoto" src="~/Images/emp-blank-avatar.png" alt="Employee Image">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeePhotoPath, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="EmployeePhoto" name="EmployeePhoto" />
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -117,4 +136,27 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        //Read input file and display in a image tag
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imgEmpPhoto').attr('src', "");
+                    var img = $('#imgEmpPhoto').attr('src', e.target.result).width(200).height(200);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $('#EmployeePhoto').change(function () {
+            readFile(this);
+        });
+
+    </script>
+
 }
