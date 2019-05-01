@@ -17,7 +17,7 @@ namespace HRM.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Designation);
+            var employees = db.Employees.Include(e => e.Dept).Include(e => e.Designation);
             return View(employees.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace HRM.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
+            ViewBag.DeptId = new SelectList(db.Depts, "Id", "DeptCode");
             ViewBag.DesignationId = new SelectList(db.Designations, "Id", "ShortName");
             return View();
         }
@@ -48,7 +49,7 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmployeeCode,FullName,NickName,FatherName,MotherName,DesignationId")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,EmployeeCode,FullName,NickName,MobileNumber,Email,FatherName,MotherName,DesignationId,BloodGroup,DeptId,Address")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace HRM.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DeptId = new SelectList(db.Depts, "Id", "DeptCode", employee.DeptId);
             ViewBag.DesignationId = new SelectList(db.Designations, "Id", "ShortName", employee.DesignationId);
             return View(employee);
         }
@@ -73,6 +75,7 @@ namespace HRM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DeptId = new SelectList(db.Depts, "Id", "DeptCode", employee.DeptId);
             ViewBag.DesignationId = new SelectList(db.Designations, "Id", "ShortName", employee.DesignationId);
             return View(employee);
         }
@@ -82,7 +85,7 @@ namespace HRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,FullName,NickName,FatherName,MotherName,DesignationId")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,EmployeeCode,FullName,NickName,MobileNumber,Email,FatherName,MotherName,DesignationId,BloodGroup,DeptId,Address")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace HRM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DeptId = new SelectList(db.Depts, "Id", "DeptCode", employee.DeptId);
             ViewBag.DesignationId = new SelectList(db.Designations, "Id", "ShortName", employee.DesignationId);
             return View(employee);
         }

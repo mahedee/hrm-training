@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Dept.DeptCode)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Designation.ShortName)
         </th>
         <th>
@@ -24,16 +27,31 @@
             @Html.DisplayNameFor(model => model.NickName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FatherName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MotherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BloodGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dept.DeptCode)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Designation.ShortName)
         </td>
@@ -47,10 +65,22 @@
             @Html.DisplayFor(modelItem => item.NickName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.MobileNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.FatherName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MotherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BloodGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
